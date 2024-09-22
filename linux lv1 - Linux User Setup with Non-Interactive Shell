@@ -1,0 +1,29 @@
+Task:
+To accommodate the backup agent tool's specifications, the system admin team at xFusionCorp Industries requires the creation of a user with a non-interactive shell. Here's your task:
+
+Create a user named john with a non-interactive shell on App Server 1.
+
+
+Answer:
+thor@jumphost ~$ ssh tony@stapp01
+The authenticity of host 'stapp01 (172.16.238.10)' can't be established.
+ED25519 key fingerprint is SHA256:/daRZ3L4W4LSGFUZkeybtRfrD4B6Ltv5NY/SgqSdsp8.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'stapp01' (ED25519) to the list of known hosts.
+tony@stapp01's password: 
+[tony@stapp01 ~]$ sudo su
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for tony: 
+[root@stapp01 tony]# useradd john -s /sbin/nologin
+[root@stapp01 tony]# grep john /etc/passwd
+john:x:1002:1002::/home/john:/sbin/nologin
+[root@stapp01 tony]# 
+
