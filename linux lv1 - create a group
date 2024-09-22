@@ -7,23 +7,17 @@ b. Add the user stark into the nautilus_sftp_users group on all App servers. If 
 Answer:
 thor@jumphost ~$ ssh tony@stapp01
 The authenticity of host 'stapp01 (172.16.238.10)' can't be established.
-ED25519 key fingerprint is SHA256:v73ZsPrsLdeRVvALP4CeJ7W/0m7txeE8/nLYg4hx86s.
+ED25519 key fingerprint is SHA256:bj8UyYNW7jQU1qaZtIPXo5UMjd1K6opJuo/ahaPEtYg.
 This key is not known by any other names
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added 'stapp01' (ED25519) to the list of known hosts.
 tony@stapp01's password: 
-[tony@stapp01 ~]$ su -
-Password: 
-su: Authentication failure
-[tony@stapp01 ~]$ su -
-Password: 
-su: Authentication failure
-[tony@stapp01 ~]$ id stark
-id: ‘stark’: no such user
-[tony@stapp01 ~]$ groupadd nautilus_sftp_users
+[tony@stapp01 ~]$ id sonya
+id: ‘sonya’: no such user
+[tony@stapp01 ~]$ groupadd nautilus_admin_users
 groupadd: Permission denied.
 groupadd: cannot lock /etc/group; try again later.
-[tony@stapp01 ~]$ sudo groupadd nautilus_sftp_users
+[tony@stapp01 ~]$ sudo groupadd nautilus_admin_users
 
 We trust you have received the usual lecture from the local System
 Administrator. It usually boils down to these three things:
@@ -33,16 +27,15 @@ Administrator. It usually boils down to these three things:
     #3) With great power comes great responsibility.
 
 [sudo] password for tony: 
-[tony@stapp01 ~]$ grep nautilus /etc/grep
-grep: /etc/grep: No such file or directory
-[tony@stapp01 ~]$ grep nautilus /etc/group
-nautilus_sftp_users:x:1002:
-[tony@stapp01 ~]$ useradd -G nautilus_sftp_users stark
-useradd: Permission denied.
-useradd: cannot lock /etc/group; try again later.
-[tony@stapp01 ~]$ sudo useradd -G nautilus_sftp_users stark
-[tony@stapp01 ~]$ id stark
-uid=1002(stark) gid=1003(stark) groups=1003(stark),1002(nautilus_sftp_users)
-[tony@stapp01 ~]$ grep stark /etc/passwd
-stark:x:1002:1003::/home/stark:/bin/bash
-[tony@stapp01 ~]$ 
+[tony@stapp01 ~]$ su
+Password: 
+su: Authentication failure
+[tony@stapp01 ~]$ sudo su
+[root@stapp01 tony]# useradd -G nautilus_admin_users sonya
+[root@stapp01 tony]# id sonya
+uid=1002(sonya) gid=1003(sonya) groups=1003(sonya),1002(nautilus_admin_users)
+[root@stapp01 tony]# exit
+exit
+[tony@stapp01 ~]$ exit
+logout
+Connection to stapp01 closed.
