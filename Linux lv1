@@ -1,0 +1,37 @@
+Task:
+In response to heightened security concerns, the xFusionCorp Industries security team has opted for custom Apache users for their web applications. 
+Each user is tailored specifically for an application, enhancing security measures. Your task is to create a custom Apache user according to the outlined specifications:
+
+a. Create a user named jim on App server 1 within the Stratos Datacenter.
+b. Assign a unique UID 1384 and designate the home directory as /var/www/jim.
+
+Answer:
+thor@jumphost ~$ ssh tony@stapp01
+tony@stapp01's password: 
+[tony@stapp01 ~]$ 
+[tony@stapp01 ~]$ clear
+-bash: clear: command not found
+[tony@stapp01 ~]$ pwd
+/home/tony
+[tony@stapp01 ~]$ clean
+-bash: clean: command not found
+[tony@stapp01 ~]$ clear
+-bash: clear: command not found
+[tony@stapp01 ~]$ useradd -u 1384 -d /var/www/jim jim
+useradd: Permission denied.
+useradd: cannot lock /etc/passwd; try again later.
+[tony@stapp01 ~]$ sudo useradd -u 1384 -d /var/www/jim jim
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for tony: 
+[tony@stapp01 ~]$ id jim
+uid=1384(jim) gid=1384(jim) groups=1384(jim)
+[tony@stapp01 ~]$ grep jim /etc/passwd
+jim:x:1384:1384::/var/www/jim:/bin/bash
+[tony@stapp01 ~]$ 
