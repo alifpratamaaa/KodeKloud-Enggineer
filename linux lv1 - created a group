@@ -1,0 +1,48 @@
+Task:
+The system admin team at xFusionCorp Industries has streamlined access management by implementing group-based access control. Here's what you need to do:
+
+a. Create a group named nautilus_sftp_users across all App servers within the Stratos Datacenter.
+b. Add the user stark into the nautilus_sftp_users group on all App servers. If the user doesn't exist, create it as well.
+
+Answer:
+thor@jumphost ~$ ssh tony@stapp01
+The authenticity of host 'stapp01 (172.16.238.10)' can't be established.
+ED25519 key fingerprint is SHA256:v73ZsPrsLdeRVvALP4CeJ7W/0m7txeE8/nLYg4hx86s.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'stapp01' (ED25519) to the list of known hosts.
+tony@stapp01's password: 
+[tony@stapp01 ~]$ su -
+Password: 
+su: Authentication failure
+[tony@stapp01 ~]$ su -
+Password: 
+su: Authentication failure
+[tony@stapp01 ~]$ id stark
+id: ‘stark’: no such user
+[tony@stapp01 ~]$ groupadd nautilus_sftp_users
+groupadd: Permission denied.
+groupadd: cannot lock /etc/group; try again later.
+[tony@stapp01 ~]$ sudo groupadd nautilus_sftp_users
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for tony: 
+[tony@stapp01 ~]$ grep nautilus /etc/grep
+grep: /etc/grep: No such file or directory
+[tony@stapp01 ~]$ grep nautilus /etc/group
+nautilus_sftp_users:x:1002:
+[tony@stapp01 ~]$ useradd -G nautilus_sftp_users stark
+useradd: Permission denied.
+useradd: cannot lock /etc/group; try again later.
+[tony@stapp01 ~]$ sudo useradd -G nautilus_sftp_users stark
+[tony@stapp01 ~]$ id stark
+uid=1002(stark) gid=1003(stark) groups=1003(stark),1002(nautilus_sftp_users)
+[tony@stapp01 ~]$ grep stark /etc/passwd
+stark:x:1002:1003::/home/stark:/bin/bash
+[tony@stapp01 ~]$ 
