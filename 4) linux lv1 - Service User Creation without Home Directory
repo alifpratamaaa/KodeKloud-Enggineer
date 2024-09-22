@@ -1,0 +1,32 @@
+Task:
+In response to the latest tool implementation at xFusionCorp Industries, the system admins require the creation of a service user account. Here are the specifics:
+
+Create a user named siva in App Server 2 without a home directory.
+
+
+Answer:
+thor@jumphost ~$ ssh steve@stapp02
+The authenticity of host 'stapp02 (172.16.238.11)' can't be established.
+ED25519 key fingerprint is SHA256:5sIMArA69JGyopRAkgwPMwx2xZbaq390zndopQhjlcc.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'stapp02' (ED25519) to the list of known hosts.
+steve@stapp02's password: 
+[steve@stapp02 ~]$ sudo su
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for steve: 
+[root@stapp02 steve]# id sive
+id: ‘sive’: no such user
+[root@stapp02 steve]# id siva
+id: ‘siva’: no such user
+[root@stapp02 steve]# useradd -M siva
+[root@stapp02 steve]# grep siva /etc/passwd
+siva:x:1002:1002::/home/siva:/bin/bash
+[root@stapp02 steve]# 
