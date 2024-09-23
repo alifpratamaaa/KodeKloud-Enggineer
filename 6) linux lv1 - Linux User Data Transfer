@@ -1,0 +1,52 @@
+Task:
+
+Answer:
+thor@jumphost ~$ ssh steve@stapp02
+The authenticity of host 'stapp02 (172.16.238.11)' can't be established.
+ED25519 key fingerprint is SHA256:1E6ig9QebB+DnwRcWA12UvQTEdLNUkPTzKOL4SbN5u0.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'stapp02' (ED25519) to the list of known hosts.
+steve@stapp02's password: 
+[steve@stapp02 ~]$ 
+[steve@stapp02 ~]$ sudo su 
+
+We trust you have received the usual lecture from the local System
+Administrator. It usually boils down to these three things:
+
+    #1) Respect the privacy of others.
+    #2) Think before you type.
+    #3) With great power comes great responsibility.
+
+[sudo] password for steve: 
+[root@stapp02 steve]# ls -la /home/usersdata/
+total 232
+drwxr-xr-x  5 root root  4096 Sep 23 04:18 .
+drwxr-xr-x  1 root root  4096 Sep 23 04:18 ..
+-rw-r--r--  1 siva root   405 Sep 23 04:18 index.php
+-rw-r--r--  1 root root 19915 Sep 23 04:18 license.txt
+-rw-r--r--  1 root root  7389 Sep 23 04:18 readme.html
+-rw-r--r--  1 siva root  7205 Sep 23 04:18 wp-activate.php
+drwxr-xr-x  9 root root  4096 Sep 23 04:18 wp-admin
+-rw-r--r--  1 siva root   351 Sep 23 04:18 wp-blog-header.php
+-rw-r--r--  1 siva root  2338 Sep 23 04:18 wp-comments-post.php
+-rw-r--r--  1 siva root  3001 Sep 23 04:18 wp-config-sample.php
+drwxr-xr-x  4 root root  4096 Sep 23 04:18 wp-content
+-rw-r--r--  1 siva root  5543 Sep 23 04:18 wp-cron.php
+drwxr-xr-x 27 root root 12288 Sep 23 04:18 wp-includes
+-rw-r--r--  1 siva root  2494 Sep 23 04:18 wp-links-opml.php
+-rw-r--r--  1 siva root  3985 Sep 23 04:18 wp-load.php
+-rw-r--r--  1 siva root 49135 Sep 23 04:18 wp-login.php
+-rw-r--r--  1 siva root  8522 Sep 23 04:18 wp-mail.php
+-rw-r--r--  1 siva root 24587 Sep 23 04:18 wp-settings.php
+-rw-r--r--  1 siva root 34350 Sep 23 04:18 wp-signup.php
+-rw-r--r--  1 siva root  4914 Sep 23 04:18 wp-trackback.php
+-rw-r--r--  1 siva root  3236 Sep 23 04:18 xmlrpc.php
+[root@stapp02 steve]# ls -la /official/
+total 8
+drwxrwxrwx 2 root root 4096 Sep 23 04:18 .
+drwxr-xr-x 1 root root 4096 Sep 23 04:18 ..
+[root@stapp02 steve]# find /home/usersdata/ -type f -user siva | wc -l
+1625
+[root@stapp02 steve]# find /home/usersdata/ -type f -user siva -exec cp --parents {} /official \;
+[root@stapp02 steve]# 
